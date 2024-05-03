@@ -1,25 +1,41 @@
-
-
-
 const typeDefs = `
+  
   type User {
     _id: ID
     username: String
     email: String
-     }
+    tasks: [Task]
+  }
 
+  
+  type Task {
+    _id: ID
+    title: String
+    description: String
+    dueDate: String
+    completed: Boolean
+  }
+
+
+  type Auth {
+    token: String
+    user: User
+  }
+
+ 
   type Query {
     me: User
+    getTasks: [Task]
+    getTask(taskId: ID!): Task
   }
+
 
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    }
-
-  type Auth {
-    token: ID!
-    user: User
+    addTask(title: String!, description: String, dueDate: String): Task
+    updateTask(taskId: ID!, title: String, description: String, dueDate: String, completed: Boolean): Task
+    deleteTask(taskId: ID!): Task
   }
 `;
 
