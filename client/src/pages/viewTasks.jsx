@@ -2,27 +2,17 @@ import React, { useState } from 'react';
 import AddTask from './addTask';
 import Tasks from './tasks';
 
-export default function viewTasks() {
-   
-    const [tasks, setTasks] = useState([]);
-    
-   
- setTask((prev) =>
-            prev.map((item) => (item.id === itemId ? newValue : item))
-        );
-    };
+function viewTasks() {
+    const [view, setView] = useState('tasks');
 
     return (
         <div>
-            <h1>What is on your task list? </h1>
-            <AddTask onSubmit={addTasktItem} />
-            <Tasks
-                tasks={tasks}
-                completeTasktItem={completeTasktItem}
-                removeTaskItem={removeTaskItem}
-                editTaskItem={editTaskItem}
-            ></Tasks>
+            <button onClick={() => setView('tasks')}>View Tasks</button>
+            <button onClick={() => setView('addTask')}>Add Task</button>
+            {view === 'tasks' && <Tasks />}
+            {view === 'addTask' && <AddTask />}
         </div>
     );
-
-export default viewTasks; 
+}
+   
+    
