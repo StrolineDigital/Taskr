@@ -1,5 +1,5 @@
-const User = require('../models/User');
-const Task = require('../models/Task');
+const { User, Task } = require('../models');
+
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
