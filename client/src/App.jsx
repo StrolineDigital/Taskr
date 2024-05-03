@@ -14,14 +14,6 @@ import { setContext } from '@apollo/client/link/context';
 import Nav from './components/Nav';
 import { StoreProvider } from './utils/GlobalState';
 
-function App() {
-  return (
-    <div className="taskr-app">
-      < Taskr />
-    </div>
-  );
-}; 
-
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
