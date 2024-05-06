@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import AddTask from './addTask';
 import Tasks from './tasks';
 
@@ -15,4 +15,4 @@ function viewTasks() {
     );
 }
    
-    
+    export default viewTasks;
