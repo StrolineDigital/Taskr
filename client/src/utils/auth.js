@@ -1,6 +1,6 @@
 import decode from 'jwt-decode';
 
-class AuthService {
+class Auth {
   getProfile() {
     return decode(this.getToken());
   }
@@ -16,7 +16,9 @@ class AuthService {
       const decoded = decode(token);
       if (decoded.exp < Date.now() / 1000) {
         return true;
-      } else return false;
+      } else {
+        return false;
+      }
     } catch (err) {
       return false;
     }
@@ -37,9 +39,9 @@ class AuthService {
   logout() {
     // Clear user token and profile data from localStorage
     localStorage.removeItem('id_token');
-    // this will reload the page and reset the state of the application
+    // This will reload the page and reset the state of the application
     window.location.assign('/');
   }
 }
 
-export default new AuthService();
+export default Auth;
