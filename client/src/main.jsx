@@ -5,10 +5,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App.jsx';
 import Home from './pages/home';
 import AddTask from './pages/addTask';
+import ViewTasks from './pages/viewTasks';
 import NoMatch from './pages/NoMatch';
 import Login from './pages/login';
 import Signup from './pages/signup';
-import viewTasks from './pages/viewTasks';
 
 const router = createBrowserRouter([
   {
