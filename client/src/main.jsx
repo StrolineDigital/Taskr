@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import App from './App.jsx';
+import App from './App.jsx';e
 import Home from './pages/home';
 import AddTask from './pages/addTask';
 import NoMatch from './pages/NoMatch';

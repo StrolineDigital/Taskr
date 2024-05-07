@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Tasks from './tasks';
-import viewTasks from './viewTasks';
+import ViewTasks from './viewTasks';
 
 const [task, setTask] = useState([]);
 
