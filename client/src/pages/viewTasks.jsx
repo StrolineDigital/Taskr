@@ -2,7 +2,7 @@ import { useState } from 'react';
 import AddTask from './addTask';
 import Tasks from './tasks';
 
-function viewTasks() {
+function ViewTasks() {
     const [view, setView] = useState('tasks');
 
     return (
@@ -15,4 +15,4 @@ function viewTasks() {
     );
 }
    
-    export default viewTasks;
+    export default ViewTasks;

@@ -1,13 +1,13 @@
-import viewTasks from "./viewTasks";
+import ViewTasks from "./viewTasks";
 
 
-const Home = () => {
+const Taskr = () => {
   return (
     <div className="container">
         <h1>Task List</h1>
-        <viewTasks />
+        <ViewTasks />
     </div>
   );
 };
 
-export default Home;
+export default Taskr;
