@@ -1,12 +1,19 @@
+<<<<<<< HEAD
 import { useState } from 'react';
 import Tasks from './tasks';
 import ViewTasks from './viewTasks';
 
 const [task, setTask] = useState([]);
+=======
+import React, { useState } from 'react';
+import Tasks from './Tasks'; // Assuming Tasks component is in 'Tasks.js'
+import ViewTasks from './viewTasks'; // Assuming ViewTasks component is in 'ViewTasks.js'
+>>>>>>> 20875647a6d1a5b8b506bbcc77e68ee08538dbea
 
 function AddTask() {
+    const [tasks, setTasks] = useState([]);
     const [item, setItem] = useState({
-        id: null,
+        id: 0, // starting ID
         text: '',
         isComplete: false,
     });
@@ -22,56 +29,60 @@ function AddTask() {
         }
 
         addTaskItem(item);
-        setItem({ text: '' });
+        setItem({ id: item.id + 1, text: '', isComplete: false }); // Incrementing ID for next task
+    };
+
+    const addTaskItem = (task) => {
+        setTasks([...tasks, task]);
+    };
+
+    const completeTaskItem = (id) => {
+        let updatedTask = tasks.map((task) => {
+            if (task.id === id) {
+                return { ...task, isComplete: !task.isComplete };
+            }
+            return task;
+        });
+
+        setTasks(updatedTask);
+    };
+
+    const removeTaskItem = (id) => {
+        const updatedTask = tasks.filter((task) => task.id !== id);
+        setTasks(updatedTask);
+    };
+
+    const editTaskItem = (itemId, newValue) => {
+        const updatedTasks = tasks.map((task) => {
+            if (task.id === itemId) {
+                return { ...task, text: newValue };
+            }
+            return task;
+        });
+
+        setTasks(updatedTasks);
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input
-                type="text"
-                placeholder="Add a task"
-                value={item.text}
-                name="text"
-                onChange={handleChange}
+        <div>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    placeholder="Add a task"
+                    value={item.text}
+                    name="text"
+                    onChange={handleChange}
+                />
+                <button type="submit">Add Task</button>
+            </form>
+            <Tasks
+                tasks={tasks}
+                completeTaskItem={completeTaskItem}
+                removeTaskItem={removeTaskItem}
+                editTaskItem={editTaskItem}
             />
-            <button type="submit">Add Task</button>
-        </form>
+        </div>
     );
 }
-const [tasks, setTasks] = useState([]);
 
-const newTask = [item, ...tasks];
-console.log(newTask);
-
-
-setTask(newTask);
-
-
-const completeTaskItem = (id) => {
- 
-let updatedTask = task.map((item) => {
-    if (item.id === id) {
-        item.isComplete = !item.isComplete;
-    }
-    return item;
-});
-
-console.log(updatedTask);
-setTask(updatedTask);
-}; 
-
-
-const removeTasktItem = (id) => {
-const updatedTask = [...task].filter((item) => item.id !== id);
-
-setTask(updatedTask);
-};
-
-
-const editTaskItem = (itemId, newValue) => { 
-if (!newValue.text) {
-    return;
-}}; 
-
-
-export default AddTask; 
+export default AddTask;
