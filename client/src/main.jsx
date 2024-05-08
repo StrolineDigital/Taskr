@@ -3,37 +3,45 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import App from './App.jsx';
+import App from './App.jsx';
 import Home from './pages/home';
 import AddTask from './pages/addTask';
 import ViewTasks from './pages/viewTasks';
 import NoMatch from './pages/NoMatch';
 import Login from './pages/login';
 import Signup from './pages/signup';
+import ViewTasks from './pages/viewTasks';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />
-  },
-  {
-    path: 'login',
-    element: <Login />
-  },
-  {
-    path: 'signup',
-    element: <Signup />
-  },
-  {
-    path: 'addTask',
-    element: <AddTask />
-  },
-  {
-    path: 'viewTasks',
-    element: <viewTasks />
-  },
-  {
-    path: '*',
-    element: <NoMatch />
+    element: <App />,
+    error: <NoMatch />,
+    children: [
+      {
+        index: true, 
+        element: <Home />
+      }, {
+        path: '/login',
+        element: <Login />
+      }, {
+        path: '/signup',
+        element: <Signup />
+      }, 
+
+      // these pages are not made yet and will cause future errors until made
+
+      // {
+      //   path: '/success',
+      //   element: <Success />
+      // }, {
+      //   path: '/orderHistory',
+      //   element: <OrderHistory />
+      // }, {
+      //   path: '/products/:id',
+      //   element: <Detail />
+      // }
+    ]
   }
 ]);
 
