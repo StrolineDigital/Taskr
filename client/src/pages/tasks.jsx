@@ -14,18 +14,20 @@ function Tasks(props) {
     props.editTasksItem(edit.id, value);
     setEdit({ id: null, value: '', eagerness: '' });
   };
-
+/*
   if (edit.id) {
     return <AddTask edit={edit} onSubmit={submitUpdate} />;
-  }
+  }*/
 
-  return props.tasks.map((item, i) => (
+  return (
+    <> 
+   { props.map && props.tasks.map((item, i) => (
     <div
       className={
         item.isComplete
           ? `tasks-row complete ${item.eagerness}`
           : `tasks-row ${item.eagerness}`
-      }
+      } 
       key={i}
     >
       <div key={item.id} onClick={() => props.completeTasksItem(item.id)}>
@@ -37,7 +39,8 @@ function Tasks(props) {
         <p onClick={() => props.removeTasksItem(item.id)}> 🗑️</p>
       </div>
     </div>
-  ));
-}
+  ))}
+  </>
+)}
 
 export default Tasks;
