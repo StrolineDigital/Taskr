@@ -1,16 +1,13 @@
-import ReactDOM from 'react-dom/client'
-import './index.css'
+import ReactDOM from 'react-dom/client';
+import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import App from './App.jsx';
 import App from './App.jsx';
 import Home from './pages/home';
-import AddTask from './pages/addTask';
-import ViewTasks from './pages/viewTasks';
 import NoMatch from './pages/NoMatch';
 import Login from './pages/login';
 import Signup from './pages/signup';
-import ViewTasks from './pages/viewTasks';
 
 const router = createBrowserRouter([
   {
@@ -21,26 +18,15 @@ const router = createBrowserRouter([
       {
         index: true, 
         element: <Home />
-      }, {
+      }, 
+      {
         path: '/login',
         element: <Login />
-      }, {
+      }, 
+      {
         path: '/signup',
         element: <Signup />
-      }, 
-
-      // these pages are not made yet and will cause future errors until made
-
-      // {
-      //   path: '/success',
-      //   element: <Success />
-      // }, {
-      //   path: '/orderHistory',
-      //   element: <OrderHistory />
-      // }, {
-      //   path: '/products/:id',
-      //   element: <Detail />
-      // }
+      }
     ]
   }
 ]);
@@ -48,4 +34,4 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <RouterProvider router={router} />
-)
+);
