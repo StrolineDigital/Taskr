@@ -1,14 +1,6 @@
-<<<<<<< HEAD
 import { useState } from 'react';
-import Tasks from './tasks';
-import ViewTasks from './viewTasks';
-
-const [task, setTask] = useState([]);
-=======
-import React, { useState } from 'react';
-import Tasks from './Tasks'; // Assuming Tasks component is in 'Tasks.js'
+import Tasks from './tasks'; // Assuming Tasks component is in 'Tasks.js'
 import ViewTasks from './viewTasks'; // Assuming ViewTasks component is in 'ViewTasks.js'
->>>>>>> 20875647a6d1a5b8b506bbcc77e68ee08538dbea
 
 function AddTask() {
     const [tasks, setTasks] = useState([]);
