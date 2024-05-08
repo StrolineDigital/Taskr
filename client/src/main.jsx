@@ -25,7 +25,6 @@ const router = createBrowserRouter([
       }, {
         path: '/signup',
         element: <Signup />
-      }, 
 
       // these pages are not made yet and will cause future errors until made
 

@@ -36,10 +36,10 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <div>
-        <taskProvider>
+       
           <Nav />
           <Outlet />
-        </taskProvider>
+       
       </div>
     </ApolloProvider>
   );
