@@ -8,7 +8,7 @@ import AddTask from './pages/addTask';
 import NoMatch from './pages/NoMatch';
 import Login from './pages/login';
 import Signup from './pages/signup';
-import viewTasks from './pages/viewTasks';
+import ViewTasks from './pages/viewTasks';
 
 const router = createBrowserRouter([
   {
@@ -25,7 +25,19 @@ const router = createBrowserRouter([
       }, {
         path: '/signup',
         element: <Signup />
-      }
+
+      // these pages are not made yet and will cause future errors until made
+
+      // {
+      //   path: '/success',
+      //   element: <Success />
+      // }, {
+      //   path: '/orderHistory',
+      //   element: <OrderHistory />
+      // }, {
+      //   path: '/products/:id',
+      //   element: <Detail />
+      // }
     ]
   }
 ]);
