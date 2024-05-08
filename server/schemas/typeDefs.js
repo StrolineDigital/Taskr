@@ -20,7 +20,7 @@ const typeDefs = `
 
 
   type Auth {
-    token: String
+    token: ID!
     user: User
   }
 
