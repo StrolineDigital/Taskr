@@ -9,6 +9,13 @@ const typeDefs = `
     tasks: [Task]
   }
 
+   input TaskInput {
+    _id: ID
+    title: String
+    description: String
+    dueDate: String
+    completed: Boolean
+  }
   
   type Task {
     _id: ID
@@ -35,9 +42,9 @@ const typeDefs = `
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(firstName: String!, lastName: String!, username: String!, email: String!, password: String!): Auth
-    addTask(title: String!, description: String, dueDate: String): Task
+    addTask(taskdata: TaskInput!): User
     updateTask(taskId: ID!, title: String, description: String, dueDate: String, completed: Boolean): Task
-    deleteTask(taskId: ID!): Task
+    deleteTask(taskId: ID!): User
   }
 `;
 

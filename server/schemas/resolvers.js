@@ -1,8 +1,7 @@
 const { AuthenticationError } = require("../utils/auth");
 const { signToken } = require("../utils/auth");
-const { Task } = require("../models/Task"); // this will lead to an error, try to model line 6
-const { User } = require("../models");
-
+const { User, Task } = require("../models");
+const jwt = require("jsonwebtoken");
 const resolvers = {
   Query: {
     me: async (parent, args, context) => {
@@ -33,21 +32,22 @@ const resolvers = {
       } catch (error) {
         console.error("Error creating user:", error);
       }
-
     },
-    addTask: async (parent, { title, description, dueDate }, context) => {
-      if (!context.user) throw new AuthenticationError("Not authenticated");
-      const task = new Task({
-        title,
-        description,
-        dueDate,
-        user: context.user._id,
+    addTask: async (parent, { taskdata }, context) => {
+      // if (!context.user) throw new AuthenticationError('Not authenticated');
+
+      const decodedToken = jwt.decode(context.headers["www-authenticate"], {
+        complete: true,
       });
-      await task.save();
-      await User.findByIdAndUpdate(context.user._id, {
-        $push: { tasks: task._id },
-      });
-      return task;
+      const userId = decodedToken.payload.data._id;
+
+      const updatedUser = await User.findByIdAndUpdate(
+        { _id: userId },
+        { $addToSet: { tasks: taskdata } },
+        { new: true }
+      );
+
+      return updatedUser;
     },
     updateTask: async (
       parent,
@@ -56,8 +56,20 @@ const resolvers = {
       const updates = { title, description, dueDate, completed };
       return await Task.findByIdAndUpdate(taskId, updates, { new: true });
     },
-    deleteTask: async (parent, { taskId }) => {
-      return await Task.findByIdAndDelete(taskId);
+    deleteTask: async (parent, { taskId }, context) => {
+      console.log(taskId);
+      const decodedToken = jwt.decode(context.headers["www-authenticate"], {
+        complete: true,
+      });
+      const userId = decodedToken.payload.data._id;
+
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: userId },
+        { $pull: { savedBooks: { taskId } } },
+        { new: true }
+      );
+
+      return updatedUser;
     },
   },
 };
