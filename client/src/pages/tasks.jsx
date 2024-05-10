@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import AddTask from './addTask';
 //This function will allow users to view their tasks
 function Tasks(props) {
@@ -7,6 +7,21 @@ function Tasks(props) {
     value: '',
     eagerness: '',
   });
+  const [tasks,setTasks] = useState([]);
+
+  useEffect(() => {
+    try {
+      const tasks = JSON.parse(localStorage.getItem('tasks'));
+      if (tasks) {
+        setTasks(tasks);
+      }
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }, []); //This function will allow users to view their tasks
+
+
 //logs the tasks entered by user
   console.log(props.tasks);
 //This function will allow users to submit an update to a task
@@ -21,7 +36,7 @@ function Tasks(props) {
 //renders the tasks entered by the user
   return (
     <> 
-   { props.map && props.tasks.map((item, i) => (
+   { tasks.map((item, i) => (
     <div
       className={
         item.isComplete
