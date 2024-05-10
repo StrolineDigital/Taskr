@@ -11,7 +11,7 @@ function Tasks(props) {
   console.log(props.tasks);
 //This function will allow users to submit an update to a task
   const submitUpdate = (value) => {
-    props.editTasksItem(edit.id, value);
+    props.editTasksItem(edit.id, value); ///DOES NOTHING
     setEdit({ id: null, value: '', eagerness: '' });
   };
 /*

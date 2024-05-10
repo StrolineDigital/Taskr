@@ -3,7 +3,7 @@ import AddTask from './addTask';
 import Tasks from './tasks';
 
 function ViewTasks() {
-    const [view, setView] = useState('tasks');
+    const [view, setView] = useState('tasks');// You arent saving any data 
 
     return (
         <div>
