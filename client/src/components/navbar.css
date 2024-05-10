@@ -1,5 +1,30 @@
+.header{
+    display: flexbox
 
-  
-  
+}
+
+.title {
+    font-size: 70px;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    justify-content: left; 
+    float: left;
+    margin: auto;
+    padding: 10px;
+}
+
+.menuItems{
+    display: flex;
+    flex-direction: column; 
+    justify-content: end;
+    margin: 0 10px;
+    border: solid 1px transparent;  
+    padding: 7px;
+    border-radius: 8px;
+   float:right; 
+}
+
+
   
   

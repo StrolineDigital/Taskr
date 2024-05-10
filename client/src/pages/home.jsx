@@ -5,7 +5,7 @@ const Taskr = () => {
   return (
     <div className="container">
         <h1>Task List</h1> 
-        <ViewTasks />
+        <ViewTasks />  
     </div>
   );
 };

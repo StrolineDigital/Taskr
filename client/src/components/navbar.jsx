@@ -35,23 +35,23 @@ function Nav() {
       );
     }
   }
-
   return (
-    <header className="flex-row px-1">
-      <h1>
-        <Link to="/">
+    <>
+<div className="header">
+{/**  TITLE/HEADER */}
+<div className="title"> <Link to="/">
           <span >    </span>
           TASKR APP
-        </Link>
-      </h1>
+        </Link></div>
 
-      <nav>
-        {showNavigation()}
-      </nav>
-    </header>
+{/**  List/Menu Items */}
+<div className="menuItems">    {showNavigation()}</div>
+</div>
+
+    </> 
   );
-}
 
+  }
 export default Nav;
 
 
