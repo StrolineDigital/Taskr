@@ -25,6 +25,7 @@ function AddTask() {
 
     addTaskItem(item);
     setItem({ id: item.id + 1, text: "", isComplete: false }); // Incrementing ID for next task
+    localStorage.setItem("tasks", JSON.stringify(tasks)); 
   };
 
   // This function adds a task item to the list of tasks.
