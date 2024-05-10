@@ -1,21 +1,17 @@
 import { gql } from '@apollo/client';
-
+//This file holds the queries that will be used in the application
 export const QUERY_USER = gql`
   {
     user {
       firstName
       lastName
-      orders {
+      email
+      tasks {
         _id
-        purchaseDate
-        products {
-          _id
-          name
-          description
-          price
-          quantity
-          image
-        }
+        title
+        description
+        dueDate
+        completed
       }
     }
   }

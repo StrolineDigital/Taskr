@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import AddTask from './addTask';
-
+//This function will allow users to view their tasks
 function Tasks(props) {
   const [edit, setEdit] = useState({
     id: null,
     value: '',
     eagerness: '',
   });
-
+//logs the tasks entered by user
   console.log(props.tasks);
-
+//This function will allow users to submit an update to a task
   const submitUpdate = (value) => {
     props.editTasksItem(edit.id, value);
     setEdit({ id: null, value: '', eagerness: '' });
@@ -18,7 +18,7 @@ function Tasks(props) {
   if (edit.id) {
     return <AddTask edit={edit} onSubmit={submitUpdate} />;
   }*/
-
+//renders the tasks entered by the user
   return (
     <> 
    { props.map && props.tasks.map((item, i) => (

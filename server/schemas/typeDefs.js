@@ -4,7 +4,6 @@ const typeDefs = `
     _id: ID
     firstName: String
     lastName: String
-    username: String
     email: String
     tasks: [Task]
   }

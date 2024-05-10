@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import { LOGIN } from '../utils/mutations';
 import Auth from '../utils/auth';
-
+//This function will allow users to login to the application
 function Login() {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error }] = useMutation(LOGIN);
@@ -20,7 +20,7 @@ function Login() {
       console.log('error', e);
     }
   };
-
+//This function will allow users to enter their email and password to login
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({
@@ -28,7 +28,7 @@ function Login() {
       [name]: value,
     });
   };
-
+//This will render the login form
   return (
     <div className="container my-1">
       <Link to="/signup">← Go to Signup</Link>

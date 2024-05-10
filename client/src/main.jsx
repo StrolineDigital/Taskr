@@ -7,7 +7,7 @@ import Home from './pages/home';
 import NoMatch from './pages/NoMatch';
 import Login from './pages/login';
 import Signup from './pages/signup';
-
+//This sets the structure of the application
 const router = createBrowserRouter([
   {
     path: '/',

@@ -16,7 +16,7 @@ import Nav from './components/navbar';
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
-
+//This will set up the request middleware that will add the token to the request's headers
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
   return {
@@ -26,12 +26,12 @@ const authLink = setContext((_, { headers }) => {
     },
   };
 });
-
+//This will create the Apollo Client
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
-
+//This will render the application
 function App() {
   return (
     <ApolloProvider client={client}>
