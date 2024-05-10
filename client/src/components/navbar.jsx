@@ -1,5 +1,6 @@
 import Auth from "../../src/utils/auth";
 import { Link } from "react-router-dom";
+import './navbar.css'; 
 
 function Nav() {
 
@@ -40,7 +41,7 @@ function Nav() {
       <h1>
         <Link to="/">
           <span >    </span>
-          Taskr App
+          TASKR APP
         </Link>
       </h1>
 

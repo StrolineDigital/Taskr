@@ -24,6 +24,9 @@
     display: flex;
     justify-content: end;
     list-style: none;
+    padding: 0;
+    
+
     
   }
 
@@ -51,4 +54,17 @@
 
   }
 
+@media screen and (max-width: 600px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .container li {
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+}
   
