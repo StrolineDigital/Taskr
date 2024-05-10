@@ -19,6 +19,7 @@ function Signup() {
       },
     });
     //use the token from the mutation response to log the user in
+    console.log(mutationResponse);
     const token = mutationResponse.data.addUser.token;
     Auth.login(token);
   };

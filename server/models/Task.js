@@ -1,22 +1,19 @@
 const { Schema } = require("mongoose");
 //This model will be used to create the tasks that will be associated with each user
 const taskSchema = new Schema({
-  title: {
+  text: {
     type: String,
     required: true,
     trim: true,
   },
-  description: {
-    type: String,
-    trim: true,
-  },
-  dueDate: {
-    type: String,
-  },
-  completed: {
+ 
+    isComplete: {
     type: Boolean,
     default: false,
   },
 });
 
 module.exports = taskSchema;
+  
+  
+
