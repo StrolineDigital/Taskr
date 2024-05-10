@@ -1,16 +1,16 @@
 import decode from "jwt-decode";
-
+// This class will manage the authentication of users
 class Auth {
   getProfile() {
     return decode(this.getToken());
   }
-
+//This function will check if the user is logged in
   loggedIn() {
     // Checks if there is a saved token and it's still valid
     const token = this.getToken();
     return !!token && !this.isTokenExpired(token);
   }
-
+//This function will check if the token has expired
   isTokenExpired(token) {
     try {
       const decoded = decode(token);

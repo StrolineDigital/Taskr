@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { ADD_USER } from '../utils/mutations';
-
+//This function will allow users to sign up for the application
 function Signup() {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [addUser] = useMutation(ADD_USER);
@@ -18,10 +18,11 @@ function Signup() {
         lastName: formState.lastName,
       },
     });
+    //use the token from the mutation response to log the user in
     const token = mutationResponse.data.addUser.token;
     Auth.login(token);
   };
-
+//This function will allow users to enter their first name, last name, email, and password to sign up
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({
@@ -29,7 +30,7 @@ function Signup() {
       [name]: value,
     });
   };
-
+//This will render the signup form
   return (
     <div className="container my-1">
       <Link to="/login">← Go to Login</Link>

@@ -17,6 +17,7 @@ const resolvers = {
   },
 
   Mutation: {
+    // set up sign in and add user mutations
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
       if (!user || !(await user.isCorrectPassword(password))) {
@@ -33,9 +34,10 @@ const resolvers = {
         console.error("Error creating user:", error);
       }
     },
+    //addTask mutation is used to add a task to the user's task list
     addTask: async (parent, { taskdata }, context) => {
       // if (!context.user) throw new AuthenticationError('Not authenticated');
-
+//Decode the token to get the user's id
       const decodedToken = jwt.decode(context.headers["www-authenticate"], {
         complete: true,
       });
