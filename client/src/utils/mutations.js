@@ -32,3 +32,16 @@ export const ADD_USER = gql`
     }
   }
 `;
+export const ADD_TASK = gql`
+mutation Mutation($taskdata: TaskInput!) {
+  addTask(taskdata: $taskdata) {
+    _id
+    firstName
+    lastName
+    email
+    tasks {
+      _id
+    }
+  }
+}
+`;
