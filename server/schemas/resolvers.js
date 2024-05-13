@@ -1,79 +1,125 @@
-const { AuthenticationError } = require("../utils/auth");
-const { signToken } = require("../utils/auth");
-const { User, Task } = require("../models");
-const jwt = require("jsonwebtoken");
+
+
+const { AuthenticationError } = require('../utils/auth');
+const { signToken } = require('../utils/auth');
+const { User, Task } = require('../models');
+const jwt = require('jsonwebtoken');
+
+
 const resolvers = {
-  Query: {
-    me: async (parent, args, context) => {
-      if (!context.user) throw new AuthenticationError("Not authenticated");
-      return await User.findById(context.user._id).populate("tasks");
-    },
-    getTasks: async () => {
-      return await Task.find({});
-    },
-    getTask: async (parent, { taskId }) => {
-      return await Task.findById(taskId);
-    },
-  },
+ Query: {
+   me: async (parent, args, context) => {
 
-  Mutation: {
-    // set up sign in and add user mutations
-    login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
-      if (!user || !(await user.isCorrectPassword(password))) {
-        throw new AuthenticationError("Incorrect credentials");
-      }
 
-      return { token: signToken(user), user };
-    },
-    addUser: async (parent, args) => {
-      try {
-        const user = await User.create(args);
-        return { token: signToken(user), user };
-      } catch (error) {
-        console.error("Error creating user:", error);
-      }
-    },
-    //addTask mutation is used to add a task to the user's task list
-    addTask: async (parent, { taskdata }, context) => {
-      // if (!context.user) throw new AuthenticationError('Not authenticated');
-//Decode the token to get the user's id
-      const decodedToken = jwt.decode(context.headers["www-authenticate"], {
-        complete: true,
-      });
-      const userId = decodedToken.payload.data._id;
+     const decodedToken = jwt.decode(context.headers['www-authenticate'], { complete: true });
+     const userId = decodedToken.payload.data._id;
+     const user = await User.findOne({ _id: userId });
+     return user;
+    
+     //if (!context.user) throw new AuthenticationError('Not authenticated');
+    
+   },
+   getTask: async (parent, { taskId }, context) => {
+     const decodedToken = jwt.decode(context.headers['www-authenticate'], { complete: true });
+     const userId = decodedToken.payload.data._id;
+     const user = await User.findOne({ _id: userId });
+     const task = user.tasks.id(taskId);
+     return task;
+    
+   },
+ },
 
-      const updatedUser = await User.findByIdAndUpdate(
-        { _id: userId },
-        { $addToSet: { tasks: taskdata } },
-        { new: true }
-      );
 
+ Mutation: {
+   login: async (parent, { email, password }) => {
+     const user = await User.findOne({ email });
+     if (!user || !(await user.isCorrectPassword(password))) {
+       throw new AuthenticationError('Incorrect credentials');
+     }
+
+
+     return { token: signToken(user), user };
+   },
+   addUser: async (parent, args) => {
+     console.log(args);
+  //   const user = await User.create(args);
+   //  const token = signToken(user);
+
+
+     try {
+       const user = await User.create(args);
+       return { token: signToken(user), user };
+     } catch (error) {
+       console.error('Error creating user:', error);
+       // Handle the error appropriately, such as returning an error response
+     }
+    
+  
+    // return { token, user };
+   },
+   addTask: async (parent, { taskdata }, context) => {
+    // if (!context.user) throw new AuthenticationError('Not authenticated');
+  
+   
+    
+     const decodedToken = jwt.decode(context.headers['www-authenticate'], { complete: true });
+     const userId = decodedToken.payload.data._id;
+    
+    
+     const updatedUser = await User.findByIdAndUpdate(
+       { _id: userId },
+       { $addToSet: { tasks: taskdata } },
+       { new: true }
+     );
       return updatedUser;
-    },
-    updateTask: async (
-      parent,
-      { taskId, title, description, dueDate, completed }
-    ) => {
-      const updates = { title, description, dueDate, completed };
-      return await Task.findByIdAndUpdate(taskId, updates, { new: true });
-    },
-    deleteTask: async (parent, { taskId }, context) => {
-      console.log(taskId);
-      const decodedToken = jwt.decode(context.headers["www-authenticate"], {
-        complete: true,
-      });
-      const userId = decodedToken.payload.data._id;
+   },
 
-      const updatedUser = await User.findOneAndUpdate(
-        { _id: userId },
-        { $pull: { savedBooks: { taskId } } },
-        { new: true }
-      );
 
+   updateTask: async (parent, { taskId, taskdata  }, context) => {
+     const decodedToken = jwt.decode(context.headers['www-authenticate'], { complete: true });
+     const userId = decodedToken.payload.data._id;
+     const user = await User.findOne({ _id: userId });
+     const allTasks = user.tasks; 
+     console.log(allTasks);
+     allTasks.forEach(task => {
+       console.log(task._id);
+       if (task._id == taskId) {
+         task.title = taskdata.title;
+         task.description = taskdata.description;
+         task.dueDate = taskdata.dueDate;
+         task.completed = taskdata.completed;
+       }
+     }
+     );
+     console.log(allTasks);
+     const updatedUser = await User.findOneAndUpdate(
+       { _id: userId},
+       { $set: { tasks: allTasks  } },
+       { new: true }
+      
+     );
+     return updatedUser;
+   },
+
+
+  
+ 
+
+
+   deleteTask: async (parent, { taskId }, context) => {
+     console.log(taskId);
+     const decodedToken = jwt.decode(context.headers['www-authenticate'], { complete: true });
+     const userId = decodedToken.payload.data._id;
+      console.log(userId);
+     const updatedUser = await User.findOneAndUpdate(
+       { _id: userId },
+       { $pull: { tasks: { _id: taskId } } },
+       { new: true }
+     );
       return updatedUser;
-    },
-  },
+   },
+ },
 };
+
 
 module.exports = resolvers;
