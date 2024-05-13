@@ -10,17 +10,13 @@ const typeDefs = `
 
   input TaskInput {
     _id: ID
-    title: String
-    description: String
-    dueDate: String
-    completed: Boolean
+    text: String
+    isComplete: Boolean
   }  
   type Task {
     _id: ID
-    title: String
-    description: String
-    dueDate: String
-    completed: Boolean
+    text: String
+    isComplete: Boolean
   }
 
 

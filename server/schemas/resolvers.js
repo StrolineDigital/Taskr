@@ -1,8 +1,6 @@
-
-
 const { AuthenticationError } = require('../utils/auth');
 const { signToken } = require('../utils/auth');
-const { User, Task } = require('../models');
+const { User } = require('../models');
 const jwt = require('jsonwebtoken');
 
 
@@ -60,12 +58,12 @@ const resolvers = {
    addTask: async (parent, { taskdata }, context) => {
     // if (!context.user) throw new AuthenticationError('Not authenticated');
   
-   
+     console.log("you have entered the chat")
     
      const decodedToken = jwt.decode(context.headers['www-authenticate'], { complete: true });
      const userId = decodedToken.payload.data._id;
     
-    
+    console.log("my datat!!!", taskdata);
      const updatedUser = await User.findByIdAndUpdate(
        { _id: userId },
        { $addToSet: { tasks: taskdata } },
@@ -80,18 +78,18 @@ const resolvers = {
      const userId = decodedToken.payload.data._id;
      const user = await User.findOne({ _id: userId });
      const allTasks = user.tasks; 
-     console.log(allTasks);
+     console.log("viewing all the tasks", allTasks);
      allTasks.forEach(task => {
-       console.log(task._id);
-       if (task._id == taskId) {
-         task.title = taskdata.title;
-         task.description = taskdata.description;
-         task.dueDate = taskdata.dueDate;
-         task.completed = taskdata.completed;
+       console.log("here is the task id ", task._id); 
+       console.log("here is the task we want to update ", taskId);
+       if (task._id == taskId) { 
+           
+         task.text = taskdata.text; 
+         task.isComplete = taskdata.isComplete;
        }
      }
      );
-     console.log(allTasks);
+     console.log("UPDATED TASKS", allTasks);
      const updatedUser = await User.findOneAndUpdate(
        { _id: userId},
        { $set: { tasks: allTasks  } },
