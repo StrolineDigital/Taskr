@@ -23,7 +23,7 @@ Main Page
 
 Login Page 
 
-<img src="../Taskr/client/assets/images/login.png">
+<img src="./client/assets/images/login.png">
 
 Sign-up Page
 
