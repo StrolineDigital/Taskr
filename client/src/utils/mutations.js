@@ -45,3 +45,31 @@ mutation Mutation($taskdata: TaskInput!) {
   }
 }
 `;
+export const UPDATE_TASK = gql`
+mutation updateTask($taskId: ID!, $taskdata: TaskInput!) {
+  updateTask(taskId: $taskId, taskdata: $taskdata) {
+    _id
+    firstName
+    lastName
+    email
+    tasks {
+      _id
+    }
+  }
+}
+`; 
+
+export const DELETE_TASK = gql`
+mutation deleteTask($taskId: ID!) {
+  deleteTask(taskId: $taskId) {
+    username
+    tasks {
+      _id
+      title
+      description
+      dueDate
+      completed
+    }
+  }
+}
+`;
