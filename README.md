@@ -11,15 +11,15 @@ TASKR is an app where you can manage and follow your daily/weekly tasks. You can
 
 Project Requirements 
 
-<img src="../Taskr/client/assets/images/requirements.png">
+<img src="./client/assets/images/requirements.png">
 
-<img src="../Taskr/client/assets/images/requirements-2.png"> 
+<img src="./client/assets/images/requirements-2.png"> 
 
 TASKR APP 
 
 Main Page 
 
-<img src="../Taskr/client/assets/images/view-task.png">
+<img src="./client/assets/images/view-task.png">
 
 Login Page 
 
@@ -27,11 +27,11 @@ Login Page
 
 Sign-up Page
 
-<img src="../Taskr/client/assets/images/signup.png"> 
+<img src="./client/assets/images/signup.png"> 
 
 Add a task Page 
 
-<img src="../Taskr/client/assets/images/add-a-task.png"> 
+<img src="./client/assets/images/add-a-task.png"> 
 
 
 ## Usage / Installation 
@@ -45,7 +45,7 @@ If you would like to use our app you need to install it to your device. Follow t
 
 ## Technologies Used
 
-Node.js, React, MERN, State, JavaScript, CSS, HTML. 
+Node.js, React, MERN, CRUD, MongoDB, State, JavaScript, CSS, HTML. 
 
 ## License 
 
@@ -54,6 +54,10 @@ MIT License
 ## Contributors 
 
 Dilek N. - https://github.com/dileknrdn
+
 Luke S. - https://github.com/StrolineDigital 
+
 James R. - https://github.com/caiman48 
+
 Michael S. - https://github.com/SuperMVS1991 
+
