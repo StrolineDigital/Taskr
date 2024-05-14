@@ -10,9 +10,15 @@
   }
   
   body {
-    background-color: #DEE6EC;
+    background-color: #abb7d0;
+    color: #334e67;
+    margin: 0;
+    padding: 0;
+    font-size: 1.2em;
   }
+
   
+
   h1 {
     color: #5181AC;
     font-weight: 600;
