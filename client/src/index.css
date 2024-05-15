@@ -11,6 +11,13 @@
   -webkit-size-adjust: 100%;
 }
 
+title {
+  font-size: 1.5em;
+  font-weight: 600;
+  color: #334E67; 
+  border: static 1px #334E67;
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
@@ -32,9 +39,11 @@ button {
   transition: border-color 0.25s;
   color: #5181AC; 
 }
+
 button:hover {
   border-color: #363F47;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
